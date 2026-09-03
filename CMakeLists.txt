@@ -12,6 +12,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_LIST_DIR}/src"
 )
 
+# Platform-specific library linking
 if(WIN32)
     # Windows
     target_link_libraries(${PROJECT_NAME} PUBLIC ws2_32)
@@ -19,7 +20,7 @@ elseif(ANDROID)
     # Android NDK
     target_link_libraries(${PROJECT_NAME} PUBLIC log)
 elseif(IOS OR APPLE)
-    # iOS & macOS (Apple Güvenli Að Çatýsý)
+    # iOS and macOS (Apple Security Framework)
     target_link_libraries(${PROJECT_NAME} PUBLIC "-framework Security" "-framework CoreFoundation")
 elseif(EMSCRIPTEN)
     # Web / HTML5
